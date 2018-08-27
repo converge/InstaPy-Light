@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Like Features &mdash; InstaPy Light 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Login Features" href="login.html" />
+    <link rel="prev" title="Main Features" href="instapy.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> InstaPy Light
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="blacklist.html">Blacklist Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instapy.html">Main Features</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Like Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="login.html">Login Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profile.html">Profile Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time_util.html">Time Util Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unfollow.html">Unfollow Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="util.html">Util Features</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">InstaPy Light</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Like Features</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/like.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-app.like">
+<span id="like-features"></span><h1>Like Features<a class="headerlink" href="#module-app.like" title="Permalink to this headline">¶</a></h1>
+<p>Module that handles like features</p>
+<dl class="function">
+<dt id="app.like.check_link">
+<code class="descclassname">app.like.</code><code class="descname">check_link</code><span class="sig-paren">(</span><em>browser</em>, <em>link</em>, <em>dont_like</em>, <em>ignore_if_contains</em>, <em>username</em>, <em>like_by_followers_upper_limit</em>, <em>like_by_followers_lower_limit</em>, <em>logger</em><span class="sig-paren">)</span><a class="headerlink" href="#app.like.check_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the Post is Valid/Exists</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.like.get_links_for_location">
+<code class="descclassname">app.like.</code><code class="descname">get_links_for_location</code><span class="sig-paren">(</span><em>browser</em>, <em>location</em>, <em>amount</em>, <em>logger</em>, <em>media=None</em>, <em>skip_top_posts=True</em><span class="sig-paren">)</span><a class="headerlink" href="#app.like.get_links_for_location" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetches the number of links specified by amount and returns a list of links</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.like.get_links_for_tag">
+<code class="descclassname">app.like.</code><code class="descname">get_links_for_tag</code><span class="sig-paren">(</span><em>browser</em>, <em>tag</em>, <em>amount</em>, <em>logger</em>, <em>media=None</em>, <em>skip_top_posts=True</em><span class="sig-paren">)</span><a class="headerlink" href="#app.like.get_links_for_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetches the number of links specified by amount and returns a list of links</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.like.get_links_for_username">
+<code class="descclassname">app.like.</code><code class="descname">get_links_for_username</code><span class="sig-paren">(</span><em>browser</em>, <em>username</em>, <em>amount</em>, <em>logger</em>, <em>randomize=False</em>, <em>media=None</em><span class="sig-paren">)</span><a class="headerlink" href="#app.like.get_links_for_username" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetches the number of links specified by amount and returns a list of links</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.like.get_links_from_feed">
+<code class="descclassname">app.like.</code><code class="descname">get_links_from_feed</code><span class="sig-paren">(</span><em>browser</em>, <em>amount</em>, <em>num_of_search</em>, <em>logger</em><span class="sig-paren">)</span><a class="headerlink" href="#app.like.get_links_from_feed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetches random number of links from feed and returns a list of links</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">browser:</th><td class="field-body">web driver</td>
+</tr>
+<tr class="field-even field"><th class="field-name">amount:</th><td class="field-body">?</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">num_of_search:</th><td class="field-body">?</td>
+</tr>
+<tr class="field-even field"><th class="field-name">logger:</th><td class="field-body">library to log actions</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Returns:</dt>
+<dd>links ?</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.like.get_tags">
+<code class="descclassname">app.like.</code><code class="descname">get_tags</code><span class="sig-paren">(</span><em>browser</em>, <em>url</em><span class="sig-paren">)</span><a class="headerlink" href="#app.like.get_tags" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets all the tags of the given description in the url</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.like.like_image">
+<code class="descclassname">app.like.</code><code class="descname">like_image</code><span class="sig-paren">(</span><em>account_id</em>, <em>browser</em>, <em>username</em>, <em>blacklist</em>, <em>logger</em><span class="sig-paren">)</span><a class="headerlink" href="#app.like.like_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Likes opened image</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">account_id:</th><td class="field-body">Instagram Account Id</td>
+</tr>
+<tr class="field-even field"><th class="field-name">browser:</th><td class="field-body">web driver</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">username:</th><td class="field-body">our username</td>
+</tr>
+<tr class="field-even field"><th class="field-name">blacklist:</th><td class="field-body">blacklist setup</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">logger:</th><td class="field-body">library to log actions</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Returns:</dt>
+<dd>True / False</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="login.html" class="btn btn-neutral float-right" title="Login Features" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="instapy.html" class="btn btn-neutral" title="Main Features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, converge.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

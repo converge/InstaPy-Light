@@ -1,0 +1,344 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Util Features &mdash; InstaPy Light 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Unfollow Features" href="unfollow.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> InstaPy Light
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="blacklist.html">Blacklist Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instapy.html">Main Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="like.html">Like Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="login.html">Login Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profile.html">Profile Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time_util.html">Time Util Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unfollow.html">Unfollow Features</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Util Features</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">InstaPy Light</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Util Features</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/util.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-app.util">
+<span id="util-features"></span><h1>Util Features<a class="headerlink" href="#module-app.util" title="Permalink to this headline">¶</a></h1>
+<p>When we don`t know where to place a feature, this is mamas house</p>
+<dl class="function">
+<dt id="app.util.formatNumber">
+<code class="descclassname">app.util.</code><code class="descname">formatNumber</code><span class="sig-paren">(</span><em>number</em><span class="sig-paren">)</span><a class="headerlink" href="#app.util.formatNumber" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive an unformated number an return a formated number</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.util.get_active_users">
+<code class="descclassname">app.util.</code><code class="descname">get_active_users</code><span class="sig-paren">(</span><em>browser</em>, <em>username</em>, <em>posts</em>, <em>logger</em><span class="sig-paren">)</span><a class="headerlink" href="#app.util.get_active_users" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list with users who liked the latest posts</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">browser:</th><td class="field-body">web driver</td>
+</tr>
+<tr class="field-even field"><th class="field-name">username:</th><td class="field-body">our username</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">posts:</th><td class="field-body">amount of posts to be verified</td>
+</tr>
+<tr class="field-even field"><th class="field-name">logger:</th><td class="field-body">library to log actions</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Returns:</dt>
+<dd>Active Users based on filter above</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.util.is_account_active">
+<code class="descclassname">app.util.</code><code class="descname">is_account_active</code><span class="sig-paren">(</span><em>browser</em>, <em>profile</em><span class="sig-paren">)</span><a class="headerlink" href="#app.util.is_account_active" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if it`s an active Instagram Account</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">browser:</th><td class="field-body">web driver</td>
+</tr>
+<tr class="field-even field"><th class="field-name">profile:</th><td class="field-body">profile name to be checked</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Returns:</dt>
+<dd>True for active profiles / False for invalid profiles</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.util.scroll_bottom">
+<code class="descclassname">app.util.</code><code class="descname">scroll_bottom</code><span class="sig-paren">(</span><em>browser</em>, <em>element</em>, <em>range_int</em><span class="sig-paren">)</span><a class="headerlink" href="#app.util.scroll_bottom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instagram doesn`t load all content once, and we need to scroll the pages
+down to load more content</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">browser:</th><td class="field-body">web driver</td>
+</tr>
+<tr class="field-even field"><th class="field-name">element:</th><td class="field-body">web page element to be scrolled</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">rand_int:</th><td class="field-body">calculates the scrolling limit</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Returns:</dt>
+<dd>wtf?</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.util.update_activity">
+<code class="descclassname">app.util.</code><code class="descname">update_activity</code><span class="sig-paren">(</span><em>action=None</em><span class="sig-paren">)</span><a class="headerlink" href="#app.util.update_activity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Record every Instagram server call (page load, content load, likes,
+comments, follows, unfollow).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">we need to reorganize this idea</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.util.validate_username">
+<code class="descclassname">app.util.</code><code class="descname">validate_username</code><span class="sig-paren">(</span><em>browser</em>, <em>username</em>, <em>blacklist</em>, <em>like_by_followers_upper_limit</em>, <em>like_by_followers_lower_limit</em><span class="sig-paren">)</span><a class="headerlink" href="#app.util.validate_username" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if we can interact with the user</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">browser:</th><td class="field-body">web driver</td>
+</tr>
+<tr class="field-even field"><th class="field-name">username:</th><td class="field-body">our username</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">blacklist:</th><td class="field-body">blacklist setup</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">like_by_followers_upper_limit:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">&lt;-</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">like_by_followers_lower_limit:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">&lt;-</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">are we using it ?</p>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="unfollow.html" class="btn btn-neutral" title="Unfollow Features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, converge.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

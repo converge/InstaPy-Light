@@ -1,0 +1,526 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Unfollow Features &mdash; InstaPy Light 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Util Features" href="util.html" />
+    <link rel="prev" title="Time Util Features" href="time_util.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> InstaPy Light
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="blacklist.html">Blacklist Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instapy.html">Main Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="like.html">Like Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="login.html">Login Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profile.html">Profile Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time_util.html">Time Util Features</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Unfollow Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="util.html">Util Features</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">InstaPy Light</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Unfollow Features</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/unfollow.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-app.unfollow">
+<span id="unfollow-features"></span><h1>Unfollow Features<a class="headerlink" href="#module-app.unfollow" title="Permalink to this headline">¶</a></h1>
+<p>Module which handles the follow features like unfollowing and following</p>
+<dl class="function">
+<dt id="app.unfollow.cancel_pending_requests">
+<code class="descclassname">app.unfollow.</code><code class="descname">cancel_pending_requests</code><span class="sig-paren">(</span><em>browser</em>, <em>account</em>, <em>amount</em><span class="sig-paren">)</span><a class="headerlink" href="#app.unfollow.cancel_pending_requests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cancel every pending follow request</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">browser:</th><td class="field-body">web driver</td>
+</tr>
+<tr class="field-even field"><th class="field-name">account:</th><td class="field-body">our account</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">amount:</th><td class="field-body">amount of profiles to cancel pending requests</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">we can do the same action using the setup window</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.unfollow.follow_given_user">
+<code class="descclassname">app.unfollow.</code><code class="descname">follow_given_user</code><span class="sig-paren">(</span><em>account_id</em>, <em>browser</em>, <em>acc_to_follow</em>, <em>follow_restrict</em>, <em>blacklist</em>, <em>logger</em><span class="sig-paren">)</span><a class="headerlink" href="#app.unfollow.follow_given_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Follows a given user</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">account_id:</th><td class="field-body">Instagram Account ID</td>
+</tr>
+<tr class="field-even field"><th class="field-name">browser:</th><td class="field-body">web driver</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">acc_to_follow:</th><td class="field-body">account to follow</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">follow_restrict:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">?</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">blacklist:</th><td class="field-body">blacklist setup</td>
+</tr>
+<tr class="field-even field"><th class="field-name">logger:</th><td class="field-body">library to log actions</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Returns:</dt>
+<dd>True / False</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.unfollow.follow_given_user_followers">
+<code class="descclassname">app.unfollow.</code><code class="descname">follow_given_user_followers</code><span class="sig-paren">(</span><em>account_id</em>, <em>browser</em>, <em>profile</em>, <em>amount</em>, <em>dont_include</em>, <em>username</em>, <em>follow_restrict</em>, <em>random</em>, <em>blacklist</em>, <em>logger</em><span class="sig-paren">)</span><a class="headerlink" href="#app.unfollow.follow_given_user_followers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Goes to competitor profile, load followers list and follow the profiles</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">account_id:</th><td class="field-body">Instagram Account ID</td>
+</tr>
+<tr class="field-even field"><th class="field-name">browser:</th><td class="field-body">web driver</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">profile:</th><td class="field-body">competitor profile</td>
+</tr>
+<tr class="field-even field"><th class="field-name">amount:</th><td class="field-body">amount of profile to be followed</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">dont_include:</th><td class="field-body">profiles to not follow</td>
+</tr>
+<tr class="field-even field"><th class="field-name">username:</th><td class="field-body">?</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">follow_restrict:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">?</td>
+</tr>
+<tr class="field-even field"><th class="field-name">random:</th><td class="field-body">randomize the following process</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">blacklist:</th><td class="field-body">blacklist setup</td>
+</tr>
+<tr class="field-even field"><th class="field-name">logger:</th><td class="field-body">library to log actions</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 0.0: </span>dont_include should be renamed to dont_touch</p>
+</div>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>A list of followed profiles</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.unfollow.follow_given_user_following">
+<code class="descclassname">app.unfollow.</code><code class="descname">follow_given_user_following</code><span class="sig-paren">(</span><em>account_id</em>, <em>browser</em>, <em>user_name</em>, <em>amount</em>, <em>dont_include</em>, <em>login</em>, <em>follow_restrict</em>, <em>random</em>, <em>delay</em>, <em>blacklist</em>, <em>logger</em><span class="sig-paren">)</span><a class="headerlink" href="#app.unfollow.follow_given_user_following" title="Permalink to this definition">¶</a></dt>
+<dd><p>I dont like this feature and I refuse to doc it :P</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.unfollow.follow_through_dialog">
+<code class="descclassname">app.unfollow.</code><code class="descname">follow_through_dialog</code><span class="sig-paren">(</span><em>account_id</em>, <em>browser</em>, <em>profile</em>, <em>amount</em>, <em>dont_touch</em>, <em>username</em>, <em>follow_restrict</em>, <em>allfollowing</em>, <em>randomize</em>, <em>blacklist</em>, <em>logger</em>, <em>callbacks=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#app.unfollow.follow_through_dialog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Follow profiles from dialog</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">account_id:</th><td class="field-body">Instagram Account ID</td>
+</tr>
+<tr class="field-even field"><th class="field-name">browser:</th><td class="field-body">web driver</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">amount:</th><td class="field-body">amount of profiles to be followed</td>
+</tr>
+<tr class="field-even field"><th class="field-name">dont_touch:</th><td class="field-body">profiles to not follow</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">username:</th><td class="field-body">our username</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">follow_restrict:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">?</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">all_following:</th><td class="field-body">?</td>
+</tr>
+<tr class="field-even field"><th class="field-name">randomize:</th><td class="field-body">follow profiles randomly</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">blacklist:</th><td class="field-body">blacklist setup</td>
+</tr>
+<tr class="field-even field"><th class="field-name">logger:</th><td class="field-body">library to log actions</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">callbacks:</th><td class="field-body">?</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Returns:</dt>
+<dd>All followed profiles</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.unfollow.follow_user">
+<code class="descclassname">app.unfollow.</code><code class="descname">follow_user</code><span class="sig-paren">(</span><em>account_id</em>, <em>browser</em>, <em>follow_restrict</em>, <em>login</em>, <em>user_name</em>, <em>blacklist</em>, <em>logger</em><span class="sig-paren">)</span><a class="headerlink" href="#app.unfollow.follow_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Follows the user of the currently open image</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">account_id:</th><td class="field-body">Instagram Account Id</td>
+</tr>
+<tr class="field-even field"><th class="field-name">browser:</th><td class="field-body">web driver</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">follow_restrict:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">?</td>
+</tr>
+<tr class="field-even field"><th class="field-name">login:</th><td class="field-body">?</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">user_name:</th><td class="field-body">?</td>
+</tr>
+<tr class="field-even field"><th class="field-name">blacklist:</th><td class="field-body">blacklist setup</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">logger:</th><td class="field-body">library to log actions</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.unfollow.get_given_user_followers">
+<code class="descclassname">app.unfollow.</code><code class="descname">get_given_user_followers</code><span class="sig-paren">(</span><em>browser</em>, <em>user_name</em>, <em>amount</em>, <em>dont_include</em>, <em>login</em>, <em>follow_restrict</em>, <em>randomize</em>, <em>logger</em><span class="sig-paren">)</span><a class="headerlink" href="#app.unfollow.get_given_user_followers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a competitors profile followers</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">browser:</th><td class="field-body">web driver</td>
+</tr>
+<tr class="field-even field"><th class="field-name">user_name:</th><td class="field-body">competitor?</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">amount:</th><td class="field-body">amount of profiles to load</td>
+</tr>
+<tr class="field-even field"><th class="field-name">dont_include:</th><td class="field-body">profiles to not follow</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">login:</th><td class="field-body">?</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">follow_restrict:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">?</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">randomize:</th><td class="field-body">randomize the following process</td>
+</tr>
+<tr class="field-even field"><th class="field-name">logger:</th><td class="field-body">library to log actions</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Returns:</dt>
+<dd>A list of profiles from the competitors profile</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.unfollow.get_given_user_following">
+<code class="descclassname">app.unfollow.</code><code class="descname">get_given_user_following</code><span class="sig-paren">(</span><em>browser</em>, <em>user_name</em>, <em>amount</em>, <em>dont_include</em>, <em>login</em>, <em>follow_restrict</em>, <em>randomize</em>, <em>logger</em><span class="sig-paren">)</span><a class="headerlink" href="#app.unfollow.get_given_user_following" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return competitors followings</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">is it correct ?</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.unfollow.unfollow">
+<code class="descclassname">app.unfollow.</code><code class="descname">unfollow</code><span class="sig-paren">(</span><em>browser</em>, <em>username</em>, <em>amount</em>, <em>dont_touch</em>, <em>logger</em><span class="sig-paren">)</span><a class="headerlink" href="#app.unfollow.unfollow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unfollows the given amount of users</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">browser:</th><td class="field-body">web driver</td>
+</tr>
+<tr class="field-even field"><th class="field-name">username:</th><td class="field-body">our username</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">amount:</th><td class="field-body">amount of profiles to unfollow</td>
+</tr>
+<tr class="field-even field"><th class="field-name">dont_touch:</th><td class="field-body">profiles to not unfollow</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">logger:</th><td class="field-body">library to log actions</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Returns:</dt>
+<dd>Amount of unfollowed profiles</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.unfollow.unfollow_profile_from_campaign">
+<code class="descclassname">app.unfollow.</code><code class="descname">unfollow_profile_from_campaign</code><span class="sig-paren">(</span><em>count</em>, <em>browser</em>, <em>logger</em>, <em>campaign</em>, <em>profile</em><span class="sig-paren">)</span><a class="headerlink" href="#app.unfollow.unfollow_profile_from_campaign" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unfollow profile from a blacklist campaign and mark is as unfollowed from
+the blacklist campaign</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">count:</th><td class="field-body">current unfollow index</td>
+</tr>
+<tr class="field-even field"><th class="field-name">browser:</th><td class="field-body">web driver</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">logger:</th><td class="field-body">library to log actions</td>
+</tr>
+<tr class="field-even field"><th class="field-name">campaign:</th><td class="field-body">blacklist campaign name</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">profile:</th><td class="field-body">profile to unfollow</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="app.unfollow.unfollow_user">
+<code class="descclassname">app.unfollow.</code><code class="descname">unfollow_user</code><span class="sig-paren">(</span><em>browser</em>, <em>logger</em><span class="sig-paren">)</span><a class="headerlink" href="#app.unfollow.unfollow_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unfollows the user of the currently open image</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">browser:</th><td class="field-body">web driver</td>
+</tr>
+<tr class="field-even field"><th class="field-name">logger:</th><td class="field-body">library to log actions</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Returns:</dt>
+<dd>True / False</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="util.html" class="btn btn-neutral float-right" title="Util Features" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="time_util.html" class="btn btn-neutral" title="Time Util Features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, converge.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
