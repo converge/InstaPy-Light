@@ -156,7 +156,7 @@
 <span id="main-features"></span><h1>Main Features<a class="headerlink" href="#module-app.instapy" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="app.instapy.InstaPyLight">
-<em class="property">class </em><code class="descclassname">app.instapy.</code><code class="descname">InstaPyLight</code><span class="sig-paren">(</span><em>username=None</em>, <em>password=None</em>, <em>nogui=False</em>, <em>selenium_local_session=True</em>, <em>use_firefox=False</em>, <em>bypass_suspicious_attempt=False</em>, <em>page_delay=25</em>, <em>show_logs=True</em>, <em>headless=False</em>, <em>proxy_address=None</em>, <em>proxy_port=0</em><span class="sig-paren">)</span><a class="headerlink" href="#app.instapy.InstaPyLight" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">app.instapy.</code><code class="descname">InstaPyLight</code><span class="sig-paren">(</span><em>username=None</em>, <em>password=None</em>, <em>nogui=False</em>, <em>selenium_local_session=True</em>, <em>bypass_suspicious_attempt=False</em>, <em>page_delay=25</em>, <em>show_logs=True</em>, <em>headless=False</em>, <em>proxy_address=None</em>, <em>proxy_port=0</em><span class="sig-paren">)</span><a class="headerlink" href="#app.instapy.InstaPyLight" title="Permalink to this definition">¶</a></dt>
 <dd><p>Main Class</p>
 <dl class="method">
 <dt id="app.instapy.InstaPyLight.cancel_pending_follow_requests">
@@ -491,7 +491,7 @@ used (only 5000 calls per month)</p>
 
 <dl class="method">
 <dt id="app.instapy.InstaPyLight.unfollow_users">
-<code class="descname">unfollow_users</code><span class="sig-paren">(</span><em>onlyNotFollowMe=False</em>, <em>amount=10</em><span class="sig-paren">)</span><a class="headerlink" href="#app.instapy.InstaPyLight.unfollow_users" title="Permalink to this definition">¶</a></dt>
+<code class="descname">unfollow_users</code><span class="sig-paren">(</span><em>amount=10</em><span class="sig-paren">)</span><a class="headerlink" href="#app.instapy.InstaPyLight.unfollow_users" title="Permalink to this definition">¶</a></dt>
 <dd><p>Unfollow users</p>
 <dl class="docutils">
 <dt>Args:</dt>
@@ -499,8 +499,7 @@ used (only 5000 calls per month)</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">onlyNotFollowMe:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">only unfollow who doesnt follow us back</td>
+<tr class="field-odd field"><th class="field-name">amount:</th><td class="field-body">amount of profiles to unfollow</td>
 </tr>
 </tbody>
 </table>
