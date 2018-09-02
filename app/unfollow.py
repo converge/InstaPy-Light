@@ -78,8 +78,6 @@ def unfollow(browser,
     # unfollow loop
     try:
         hasSlept = False
-        import ipdb
-        ipdb.set_trace()
         for button, person in zip(follow_buttons, person_list):
             if unfollowNum >= amount:
                 logger.info(
@@ -205,10 +203,17 @@ def unfollow_profile_from_campaign(count,
     """
     browser.get('https://www.instagram.com/{}'.format(profile))
     sleep(3)
+    import ipdb
+    ipdb.set_trace()
     try:
         unfollow_button = WebDriverWait(browser, 3).until(
             EC.presence_of_element_located((By.XPATH,
                                             "//button[text()='Following']"))
+        )
+        unfollow_button.click()
+        unfollow_button = WebDriverWait(browser, 3).until(
+            EC.presence_of_element_located((By.XPATH,
+                                            "//button[text()='Unfollow']"))
         )
         unfollow_button.click()
         logger.info('#{} profile "{}" unfollowed from "{}" campaign'
@@ -222,10 +227,17 @@ def unfollow_profile_from_campaign(count,
                     (By.XPATH, "//button[text()='Requested']"))
             )
             unfollow_button.click()
+            unfollow_button = WebDriverWait(browser, 3).until(
+                EC.presence_of_element_located((By.XPATH,
+                                                "//button[text()='Unfollow']"))
+            )
+            unfollow_button.click()
             logger.info('#{} profile "{}" unfollowed from "{}" campaign'
                         .format(count, profile, campaign))
             update_activity('unfollows')
-            mark_as_unfollowed_by_blacklist_campaign(profile, campaign, logger)
+            mark_as_unfollowed_by_blacklist_campaign(profile,
+                                                     campaign,
+                                                     logger)
         except Exception:
             try:
                 unfollow_button = WebDriverWait(browser, 3).until(
@@ -242,8 +254,8 @@ def unfollow_profile_from_campaign(count,
                 mark_as_unfollowed_by_blacklist_campaign(profile,
                                                          campaign,
                                                          logger)
-                logger.warning('Unable to unfollow profile "{}", non existing '
-                               'account ?'.format(profile))
+                logger.warning('Unable to unfollow profile "{}", non '
+                               'existing account ?'.format(profile))
 
 
 def unfollow_user(browser, logger):
@@ -328,7 +340,6 @@ def follow_through_dialog(account_id,
                           amount,
                           dont_touch,
                           username,
-                          follow_restrict,
                           allfollowing,
                           randomize,
                           blacklist,
@@ -344,7 +355,7 @@ def follow_through_dialog(account_id,
         :dont_touch: profiles to not follow
         :username: our username
         :follow_restrict: ?
-        :all_following: ?
+        :all_following: profile followers amount
         :randomize: follow profiles randomly
         :blacklist: blacklist setup
         :logger: library to log actions
@@ -360,8 +371,7 @@ def follow_through_dialog(account_id,
         amount = amount * 3
 
     # find dialog box
-    dialog = browser.find_element_by_xpath(
-      "//div[text()='Followers' or text()='Following']/following-sibling::div")
+    dialog = browser.find_element_by_xpath("//div[3]/div/div/div[2]")
 
     # scroll down the page
     scroll_bottom(browser, dialog, allfollowing)
@@ -369,7 +379,7 @@ def follow_through_dialog(account_id,
     # get follow buttons. This approch will find the follow buttons and
     # ignore the Unfollow/Requested buttons.
     follow_buttons = dialog.find_elements_by_xpath(
-        "//div/div/span/button[text()='Follow']")
+        "//li/div/div[2]/button[text()='Follow']")
 
     person_list = []
     abort = False
@@ -383,7 +393,7 @@ def follow_through_dialog(account_id,
         scroll_bottom(browser, dialog, amount_left)
         sleep(1)
         follow_buttons = dialog.find_elements_by_xpath(
-            "//div/div/span/button[text()='Follow']")
+            "//li/div/div[2]/button[text()='Follow']")
         total_list = len(follow_buttons)
         abort = (before_scroll == total_list)
 
@@ -442,9 +452,6 @@ def follow_through_dialog(account_id,
             button.click()
             log_followed_pool(username, person, logger)
             update_activity('follows')
-
-            follow_restrict[profile] = follow_restrict.get(
-                profile, 0) + 1
 
             logger.info('--> #{} followed ({}) from ({}) profile'
                         .format(str(followNum), person, profile))
@@ -633,7 +640,6 @@ def follow_given_user_followers(account_id,
                                 amount,
                                 dont_include,
                                 username,
-                                follow_restrict,
                                 random,
                                 blacklist,
                                 logger):
@@ -647,7 +653,6 @@ def follow_given_user_followers(account_id,
         :amount: amount of profile to be followed
         :dont_include: profiles to not follow
         :username: ?
-        :follow_restrict: ?
         :random: randomize the following process
         :blacklist: blacklist setup
         :logger: library to log actions
@@ -691,7 +696,6 @@ def follow_given_user_followers(account_id,
                                            amount,
                                            dont_include,
                                            username,
-                                           follow_restrict,
                                            allfollowing,
                                            random,
                                            blacklist,
@@ -707,7 +711,6 @@ def follow_given_user_following(account_id,
                                 amount,
                                 dont_include,
                                 login,
-                                follow_restrict,
                                 random,
                                 delay,
                                 blacklist,
@@ -742,7 +745,6 @@ def follow_given_user_following(account_id,
                                            amount,
                                            dont_include,
                                            login,
-                                           follow_restrict,
                                            allfollowing,
                                            random,
                                            blacklist,

@@ -971,7 +971,6 @@ class InstaPyLight:
                                                             amount,
                                                             self.dont_touch,
                                                             self.username,
-                                                            self.follow_restrict,
                                                             randomize,
                                                             self.blacklist,
                                                             self.logger)
@@ -1044,13 +1043,12 @@ class InstaPyLight:
                                self.user_interact_random,
                                self.user_interact_media)
 
-    def unfollow_users(self,
-                       onlyNotFollowMe=False, amount=10):
+    def unfollow_users(self, amount=10):
         """
         Unfollow users
 
         Args:
-            :onlyNotFollowMe: only unfollow who doesnt follow us back
+            :amount: amount of profiles to unfollow
 
         .. warning::
             onlyNotFollowMe feature not working

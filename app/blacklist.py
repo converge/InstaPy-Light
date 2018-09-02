@@ -70,7 +70,7 @@ def get_followed_by_campaign(campaign):
         cur = conn.cursor()
         sql = (
             "SELECT profile FROM blacklist WHERE campaign = ? AND "
-            "following = 1")
+            "followed = 1")
         cur.execute(sql, (campaign,))
         data = cur.fetchall()
         if data is not None:
@@ -89,7 +89,7 @@ def add_user_to_blacklist(account_id,
     Adds a profile to user blacklist campaign
 
     Args:
-        :username: username (logged in user)
+        :account_id: account_id of the logged in username
         :browser: web driver
         :profile: profile to be added to blacklist campaign
         :blacklist: blacklist setup
@@ -124,10 +124,10 @@ def add_user_to_blacklist(account_id,
                 conn.row_factory = sqlite3.Row
                 cur = conn.cursor()
                 sql = ("INSERT OR REPLACE INTO blacklist "
-                       "(username, profile, campaign, following, "
+                       "(account_id, profile, campaign, followed, "
                        "never_follow_again, created) "
                        "VALUES (?, ?, ?, ?, ?, date('now'))")
-                cur.execute(sql, (username,
+                cur.execute(sql, (account_id,
                                   profile,
                                   blacklist['campaign'],
                                   blacklist['blacklist_follows'],
@@ -156,7 +156,7 @@ def mark_as_unfollowed_by_blacklist_campaign(profile, campaign, logger):
             conn.row_factory = sqlite3.Row
             cur = conn.cursor()
             sql = ("UPDATE blacklist "
-                   "SET following = 0 "
+                   "SET followed = 0 "
                    "WHERE profile = ? "
                    "AND campaign = ?")
             cur.execute(sql, (profile, campaign,))
