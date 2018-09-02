@@ -2,7 +2,8 @@ import sqlite3
 from .profile import Profile
 from .util import DATABASE_LOCATION
 
-def get_profiles_from_blacklist_campaign(blacklist, account_id, logger):
+
+def get_profiles_from_blacklist_campaign(blacklist, username, logger):
     """
     Returns all users from a blacklist campaign
 
@@ -20,15 +21,15 @@ def get_profiles_from_blacklist_campaign(blacklist, account_id, logger):
             conn.row_factory = sqlite3.Row
             cur = conn.cursor()
             sql = (
-                "SELECT profile, campaign, liked, following, "
+                "SELECT profile, campaign, liked, followed, "
                 "never_follow_again FROM blacklist "
                 "WHERE campaign = ? "
-                "  AND account_id = ?"
+                "  AND profile = ?"
                 "  AND liked = ?"
                 "  AND never_follow_again = ?"
                 "GROUP BY profile")
             cur.execute(sql, (blacklist['campaign'],
-                              account_id,
+                              username,
                               blacklist['blacklist_likes'],
                               blacklist['never_follow_again']))
             data = cur.fetchall()
@@ -88,7 +89,7 @@ def add_user_to_blacklist(account_id,
     Adds a profile to user blacklist campaign
 
     Args:
-        :account_id: username account id
+        :username: username (logged in user)
         :browser: web driver
         :profile: profile to be added to blacklist campaign
         :blacklist: blacklist setup
@@ -123,10 +124,10 @@ def add_user_to_blacklist(account_id,
                 conn.row_factory = sqlite3.Row
                 cur = conn.cursor()
                 sql = ("INSERT OR REPLACE INTO blacklist "
-                       "(account_id, profile, campaign, following, "
+                       "(username, profile, campaign, following, "
                        "never_follow_again, created) "
                        "VALUES (?, ?, ?, ?, ?, date('now'))")
-                cur.execute(sql, (account_id,
+                cur.execute(sql, (username,
                                   profile,
                                   blacklist['campaign'],
                                   blacklist['blacklist_follows'],

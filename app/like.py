@@ -508,7 +508,6 @@ def check_link(browser,
                     'Number of followers does not reach minimum'
 
     logger.info('Link: {}'.format(link.encode('utf-8')))
-    logger.info('Description: {}'.format(image_text.encode('utf-8')))
 
     if user_name == username:
         return True, user_name, is_video, 'Username'
@@ -538,7 +537,7 @@ def check_link(browser,
     return False, user_name, is_video, 'None'
 
 
-def like_image(account_id, browser, username, blacklist, logger):
+def like_image(account_id, browser, profile, blacklist, logger):
     """
     Likes opened image
 
@@ -564,7 +563,7 @@ def like_image(account_id, browser, username, blacklist, logger):
             action = 'like'
             add_user_to_blacklist(account_id,
                                   browser,
-                                  username,
+                                  profile,
                                   blacklist,
                                   action,
                                   logger)

@@ -25,6 +25,8 @@ from .time_util import sleep
 from .time_util import set_sleep_percentage
 from .util import get_active_users
 from .util import validate_username
+from .util import get_account_id
+from .util import register_account
 from .unfollow import get_given_user_followers
 from .unfollow import get_given_user_following
 from .unfollow import unfollow_user
@@ -51,7 +53,6 @@ class InstaPyLight:
                  password=None,
                  nogui=False,
                  selenium_local_session=True,
-                 use_firefox=False,
                  bypass_suspicious_attempt=False,
                  page_delay=25,
                  show_logs=True,
@@ -75,7 +76,6 @@ class InstaPyLight:
 
         self.page_delay = page_delay
         self.switch_language = True
-        self.use_firefox = use_firefox
         self.firefox_profile_path = None
 
         self.followed = 0
@@ -113,10 +113,10 @@ class InstaPyLight:
 
         self.bypass_suspicious_attempt = bypass_suspicious_attempt
 
-        self.aborting = False
-
+        # register new account if it doesnt exist
+        register_account(self.username)
         # set account_id
-        # self.account_id = get_account_id(self.username)
+        self.account_id = get_account_id(self.username)
 
         # initialize and setup logging system
         self.logger = logging.getLogger(__name__)
@@ -143,53 +143,45 @@ class InstaPyLight:
         """
         Starts local session for a selenium server
         """
-        if self.aborting:
-            return self
+        firefox_options = Firefox_Options()
+        if self.headless:
+            firefox_options.add_argument('-headless')
 
-        if self.use_firefox:
-            firefox_options = Firefox_Options()
-            if self.headless:
-                firefox_options.add_argument('-headless')
+        if self.firefox_profile_path is not None:
+            firefox_profile = webdriver.FirefoxProfile(
+                self.firefox_profile_path)
+        else:
+            firefox_profile = webdriver.FirefoxProfile()
 
-            if self.firefox_profile_path is not None:
-                firefox_profile = webdriver.FirefoxProfile(
-                    self.firefox_profile_path)
-            else:
-                firefox_profile = webdriver.FirefoxProfile()
+        # permissions.default.image = 2: Disable images load,
+        # this setting can improve pageload & save bandwidth
+        firefox_profile.set_preference('permissions.default.image', 1)
+        firefox_profile.set_preference('devtools.jsonview.enabled', False)
 
-            # permissions.default.image = 2: Disable images load,
-            # this setting can improve pageload & save bandwidth
-            firefox_profile.set_preference('permissions.default.image', 1)
-            firefox_profile.set_preference('devtools.jsonview.enabled', False)
+        if self.proxy_address and self.proxy_port > 0:
+            firefox_profile.set_preference('network.proxy.type', 1)
+            firefox_profile.set_preference('network.proxy.http',
+                                           self.proxy_address)
+            firefox_profile.set_preference('network.proxy.http_port',
+                                           self.proxy_port)
+            firefox_profile.set_preference('network.proxy.ssl',
+                                           self.proxy_address)
+            firefox_profile.set_preference('network.proxy.ssl_port',
+                                           self.proxy_port)
 
-            if self.proxy_address and self.proxy_port > 0:
-                firefox_profile.set_preference('network.proxy.type', 1)
-                firefox_profile.set_preference('network.proxy.http',
-                                               self.proxy_address)
-                firefox_profile.set_preference('network.proxy.http_port',
-                                               self.proxy_port)
-                firefox_profile.set_preference('network.proxy.ssl',
-                                               self.proxy_address)
-                firefox_profile.set_preference('network.proxy.ssl_port',
-                                               self.proxy_port)
-
-            self.browser = webdriver.Firefox(
-                firefox_profile=firefox_profile,
-                options=firefox_options,
-                executable_path=r'/usr/local/bin/geckodriver')
+        self.browser = webdriver.Firefox(
+            firefox_profile=firefox_profile,
+            options=firefox_options,
+            executable_path=r'/usr/local/bin/geckodriver')
 
         self.browser.implicitly_wait(self.page_delay)
         self.logger.info('Session started')
 
-        return self
 
     def set_selenium_remote_session(self, selenium_url=''):
         """
         Starts remote session for a selenium server. Useful for docker setup.
         """
-        if self.aborting:
-            return self
-
         if self.use_firefox:
             self.browser = webdriver.Remote(
                 command_executor=selenium_url,
@@ -202,7 +194,6 @@ class InstaPyLight:
         self.logger.info('Session started - %s'
                          % (datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
 
-        return self
 
     def login(self):
         """
@@ -216,11 +207,8 @@ class InstaPyLight:
                           self.bypass_suspicious_attempt):
             self.logger.critical('Wrong login data!')
 
-            self.aborting = True
         else:
             self.logger.info('Logged in successfully!')
-
-        return self
 
     def set_sleep_reduce(self, percentage):
         """
@@ -228,46 +216,30 @@ class InstaPyLight:
         """
         set_sleep_percentage(percentage)
 
-        return self
-
     def set_do_follow(self, percentage=0, times=1):
         """
         Defines if the user of the liked image should be followed
         """
-        if self.aborting:
-            return self
 
         self.follow_times = times
         self.do_follow = True
         self.follow_percentage = percentage
 
-        return self
-
     def set_do_like(self, percentage=0):
-        if self.aborting:
-            return self
 
         self.do_like = True
         self.like_percentage = percentage
-
-        return self
 
     def set_dont_like(self, tags=None):
         """
         Changes the possible restriction tags, if one of this words is in the
         description, the image won't be liked
         """
-        if self.aborting:
-            return self
-
         if not isinstance(tags, list):
             self.logger.warning('Unable to use your set_dont_like '
                                 'configuration!')
-            self.aborting = True
 
         self.dont_like = tags or []
-
-        return self
 
     def set_user_interact(self,
                           amount=10,
@@ -277,27 +249,18 @@ class InstaPyLight:
         """
         Define if posts of given user should be interacted
         """
-        if self.aborting:
-            return self
 
         self.user_interact_amount = amount
         self.user_interact_random = randomize
         self.user_interact_percentage = percentage
         self.user_interact_media = media
 
-        return self
-
     def set_ignore_if_contains(self, words=None):
         """
         Ignores the don't likes if the description contains one of the given
         words
         """
-        if self.aborting:
-            return self
-
         self.ignore_if_contains = words or []
-
-        return self
 
     def set_dont_touch(self, profiles=None):
         """
@@ -306,24 +269,17 @@ class InstaPyLight:
         Args:
             :profiles: list of profiles to respect this rule
         """
-        if self.aborting:
-            return self
 
         self.dont_touch = profiles or []
 
-        return self
-
     def set_switch_language(self, option=True):
         self.switch_language = option
-        return self
 
     def set_use_clarifai(self, api_key=None, full_match=False):
         """
         Defines if the clarifai img api should be used which 'project' will be
         used (only 5000 calls per month)
         """
-        if self.aborting:
-            return self
 
         self.use_clarifai = True
 
@@ -333,8 +289,6 @@ class InstaPyLight:
             self.clarifai_api_key = api_key
 
         self.clarifai_full_match = full_match
-
-        return self
 
     def set_smart_hashtags(self,
                            tags=None,
@@ -378,15 +332,12 @@ class InstaPyLight:
 
         # delete duplicated tags
         self.smart_hashtags = list(set(self.smart_hashtags))
-        return self
 
     def follow_by_list(self, followlist, times=1):
         """
         Allows to follow by any scrapped list
         """
         self.follow_times = times or 0
-        if self.aborting:
-            return self
 
         followed = 0
 
@@ -410,21 +361,17 @@ class InstaPyLight:
                                     acc_to_follow, str(self.follow_times)))
                 sleep(1)
 
-        return self
-
     def set_upper_follower_count(self, limit=None):
         """
         Used to chose if a post is liked by the number of likes
         """
         self.like_by_followers_upper_limit = limit or maxsize
-        return self
 
     def set_lower_follower_count(self, limit=None):
         """
         Used to chose if a post is liked by the number of likes
         """
         self.like_by_followers_lower_limit = limit or 0
-        return self
 
     def like_by_locations(self,
                           locations=None,
@@ -434,8 +381,6 @@ class InstaPyLight:
         """
         Likes (default) 50 images per given locations
         """
-        if self.aborting:
-            return self
 
         liked_img = 0
         already_liked = 0
@@ -481,7 +426,6 @@ class InstaPyLight:
                             user_name, self.blacklist) is False):
                         liked = like_image(self.account_id,
                                            self.browser,
-                                           user_name,
                                            self.blacklist,
                                            self.logger)
 
@@ -532,8 +476,6 @@ class InstaPyLight:
 
         self.followed += followed
 
-        return self
-
     def like_by_tags(self,
                      tags=None,
                      amount=50,
@@ -550,8 +492,6 @@ class InstaPyLight:
             :skip_top_posts: skip initial posts
             :use_smart_hashtags: auto generate hashtags to be liked
         """
-        if self.aborting:
-            return self
 
         if not tags:
             self.logger.warning('Hashtags not set! skipping like by tags..')
@@ -590,9 +530,8 @@ class InstaPyLight:
             for i, link in enumerate(links):
                 self.logger.info('[{}/{}]'.format(i + 1, len(links)))
                 self.logger.info(link)
-
                 try:
-                    inappropriate, user_name, is_video, reason = (
+                    inappropriate, profile, is_video, reason = (
                         check_link(self.browser,
                                    link,
                                    self.dont_like,
@@ -603,15 +542,15 @@ class InstaPyLight:
                                    self.logger)
                     )
 
-                    if (is_user_in_liked_blacklist(user_name,
+                    if (is_user_in_liked_blacklist(profile,
                                                    self.blacklist) is True):
-                        reason = '{} is in liked blacklist'.format(user_name)
+                        reason = '{} is in liked blacklist'.format(profile)
                         inappropriate = True
 
                     if inappropriate is False:
                         liked = like_image(self.account_id,
                                            self.browser,
-                                           user_name,
+                                           profile,
                                            self.blacklist,
                                            self.logger)
 
@@ -622,15 +561,15 @@ class InstaPyLight:
                                          self.follow_percentage)
 
                             if (self.do_follow and
-                                user_name not in self.dont_touch and
+                                profile not in self.dont_touch and
                                 checked_img and
                                 following and
-                                self.follow_restrict.get(user_name, 0) <
+                                self.follow_restrict.get(profile, 0) <
                                     self.follow_times):
 
                                 # check blacklist
                                 if not is_user_in_followed_blacklist(
-                                    user_name,
+                                    profile,
                                     self.blacklist
                                 ):
 
@@ -639,7 +578,7 @@ class InstaPyLight:
                                         self.browser,
                                         self.follow_restrict,
                                         self.username,
-                                        user_name,
+                                        profile,
                                         self.blacklist,
                                         self.logger)
                             else:
@@ -661,14 +600,10 @@ class InstaPyLight:
 
         self.followed += followed
 
-        return self
-
     def like_by_users(self, usernames, amount=10, randomize=False, media=None):
         """
         Likes some amounts of images for each usernames
         """
-        if self.aborting:
-            return self
 
         total_liked_img = 0
         already_liked = 0
@@ -784,8 +719,6 @@ class InstaPyLight:
         self.logger.info('Already Liked: {}'.format(already_liked))
         self.logger.info('Inappropriate: {}'.format(inap_img))
 
-        return self
-
     def interact_by_users(self,
                           usernames,
                           amount=10,
@@ -794,8 +727,6 @@ class InstaPyLight:
         """
         Likes some amounts of images for each usernames
         """
-        if self.aborting:
-            return self
 
         total_liked_img = 0
         already_liked = 0
@@ -910,14 +841,10 @@ class InstaPyLight:
         self.logger.info('Already Liked: {}'.format(already_liked))
         self.logger.info('Inappropriate: {}'.format(inap_img))
 
-        return self
-
     def like_from_image(self, url, amount=50, media=None):
         """
         Gets the tags from an image and likes 50 images for each tag
         """
-        if self.aborting:
-            return self
 
         try:
             if not url:
@@ -930,10 +857,6 @@ class InstaPyLight:
             self.like_by_tags(tags, amount, media)
         except TypeError:
             self.logger.exception('message')
-            self.aborting = True
-            return self
-
-        return self
 
     def interact_user_followers(self, usernames, amount=10, randomize=False):
         """
@@ -959,11 +882,8 @@ class InstaPyLight:
             if isinstance(err, RuntimeWarning):
                 self.logger.warning(
                     u'Warning: {} , stopping follow_users'.format(err))
-                return self
             else:
                 self.logger.error('Sorry, an error occured: {}'.format(err))
-                self.aborting = True
-                return self
 
         self.logger.info('--> Users: {} \n'.format(len(user_to_interact)))
         user_to_interact = random.sample(
@@ -977,8 +897,6 @@ class InstaPyLight:
                            self.user_interact_amount,
                            self.user_interact_random,
                            self.user_interact_media)
-
-        return self
 
     def interact_user_following(self, usernames, amount=10, randomize=False):
         """
@@ -1002,11 +920,8 @@ class InstaPyLight:
             if isinstance(err, RuntimeWarning):
                 self.logger.warning(
                     u'Warning: {} , stopping follow_users'.format(err))
-                return self
             else:
                 self.logger.error('Sorry, an error occured: {}'.format(err))
-                self.aborting = True
-                return self
 
         self.logger.info('--> Users: {}'.format(len(user_to_interact)))
 
@@ -1017,8 +932,6 @@ class InstaPyLight:
                            self.user_interact_amount,
                            self.user_interact_random,
                            self.user_interact_media)
-
-        return self
 
     def follow_user_followers(self,
                               profiles,
@@ -1071,8 +984,6 @@ class InstaPyLight:
                 else:
                     self.logger.error(
                         'Sorry, an error occured: {}'.format(err))
-                    self.aborting = True
-                    return self
         self.logger.info(
             "--> Total people followed : {} ".format(len(userFollowed)))
 
@@ -1084,8 +995,6 @@ class InstaPyLight:
                                self.user_interact_amount,
                                self.user_interact_random,
                                self.user_interact_media)
-
-        return self
 
     def follow_user_following(self,
                               usernames,
@@ -1122,9 +1031,7 @@ class InstaPyLight:
                 else:
                     self.logger.error(
                         'Sorry, an error occured: {}'.format(err))
-                    self.aborting = True
 
-                    return self
         self.logger.info(
             "--> Total people followed : {} ".format(len(userFollowed)))
 
@@ -1136,8 +1043,6 @@ class InstaPyLight:
                                self.user_interact_amount,
                                self.user_interact_random,
                                self.user_interact_media)
-
-        return self
 
     def unfollow_users(self,
                        onlyNotFollowMe=False, amount=10):
@@ -1169,13 +1074,8 @@ class InstaPyLight:
             if isinstance(err, RuntimeWarning):
                 self.logger.warning(
                     u'Warning: {} , stopping unfollow_users'.format(err))
-                return self
             else:
                 self.logger.info('Sorry, an error occured: {}'.format(err))
-                self.aborting = True
-                return self
-
-        return self
 
     def like_by_feed(self,
                      amount=50,
@@ -1185,9 +1085,6 @@ class InstaPyLight:
         """
         Like the users feed
         """
-
-        if self.aborting:
-            return self
 
         liked_img = 0
         already_liked = 0
@@ -1206,8 +1103,6 @@ class InstaPyLight:
                                             self.logger)
             except NoSuchElementException:
                 self.logger.warning('Too few images, aborting')
-                self.aborting = True
-                return self
 
             num_of_search += 1
 
@@ -1315,8 +1210,6 @@ class InstaPyLight:
         self.logger.info('Randomly Skipped: {}'.format(skipped_img))
 
         self.followed += followed
-
-        return self
 
     def set_dont_unfollow_active_users(self, posts=4):
         """

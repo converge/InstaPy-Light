@@ -217,3 +217,33 @@ def is_account_active(browser, profile):
     # is desactive
     browser.implicitly_wait(0)
     return False
+
+
+def register_account(username):
+    conn = sqlite3.connect(DATABASE_LOCATION)
+    with conn:
+        cur = conn.cursor()
+        # INSERT OR REPLACE
+        sql = (
+            "INSERT OR IGNORE INTO accounts (username, modified, created) "
+            "VALUES (?, date('now'), date('now'))")
+        cur.execute(sql, (username, ))
+        conn.commit()
+
+
+def get_account_id(username):
+    """
+    Return the related account id
+
+    Args:
+        :username: username to be consulted
+    """
+    conn = sqlite3.connect(DATABASE_LOCATION)
+    with conn:
+        conn.row_factory = sqlite3.Row
+        cur = conn.cursor()
+        sql = "SELECT id FROM accounts WHERE username = ?"
+        cur.execute(sql, (username,))
+        data = cur.fetchone()
+        if data is not None:
+            return data['id']
