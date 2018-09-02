@@ -203,8 +203,6 @@ def unfollow_profile_from_campaign(count,
     """
     browser.get('https://www.instagram.com/{}'.format(profile))
     sleep(3)
-    import ipdb
-    ipdb.set_trace()
     try:
         unfollow_button = WebDriverWait(browser, 3).until(
             EC.presence_of_element_located((By.XPATH,
