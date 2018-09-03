@@ -13,7 +13,7 @@
 
 ## Introduction and initial setup
 
-InstaPy-Light is a light version of InstaPy. The main goal is to have a minimalism approach over InstaPy, beeing easier to setup and use, including basic features.
+InstaPy-Light is a light version of InstaPy. The main goal is to have a minimalistic approach over InstaPy, beeing easier to setup and use, including basic features.
 
 ### Setup your Instagram account
 
@@ -29,11 +29,11 @@ InstaPy-Light is a light version of InstaPy. The main goal is to have a minimali
 **example:**
 
 ```python
-tags ['johnassaraf', 'lawofattraction']
+tags = ['johnassaraf', 'lawofattraction']
 session.like_by_tags(tags, amount=3)
 ```
 
-Every tag will be liked n(amount) times
+Every tag will be liked n(amount) times.
 
 ### Follow Competitors Followers
 
