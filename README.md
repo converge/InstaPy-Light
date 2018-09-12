@@ -2,6 +2,8 @@
 # Contents
 
 * [Introduction](#introduction-and-initial-setup)
+* [Installation](#installation)
+  * [Install on MacOS](#install-on-macos)
 * [Features](#features)
   * [Like By Tags](#like-by-tags)
   * [Follow Competitors Followers](#follow-competitors-followers)
@@ -14,6 +16,24 @@
 ## Introduction and initial setup
 
 InstaPy-Light is a light version of InstaPy. The main goal is to have a minimalistic approach over InstaPy, beeing easier to setup and use, including basic features.
+
+## Installation
+
+InstaPy-Light uses only Firefox and Geckodriver as default browser and driver.
+
+The basics steps to install in any operational system is:
+
+1) install firefox
+2) install geckodriver
+3) git clone the project or download it using the zip file
+4) pip3 install requests selenium pyvirtualdisplay
+
+### Install On MacOS
+
+Video tutorial in Brazilian Portuguese: 
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=h9svDhveps8" target="_blank"><img src="http://img.youtube.com/vi/h9svDhveps8/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 ### Setup your Instagram account
 
