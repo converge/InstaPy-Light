@@ -12,6 +12,7 @@
   * [Unfollow](#unfollow)
 * [Developers documentation](#developers-documentation)
 * [Feedback](#feedback)
+* [Keep The Project Alive](#keep-the-project-alive)
 
 ## Introduction and initial setup
 
@@ -114,3 +115,7 @@ https://converge.github.io/InstaPy-Light
 ## Feedback
 
 Feel free to send me feedbacks to joaovanzuita@me.com
+
+## Keep The Project Alive
+
+[Donate any value using Paypal](https://www.paypal.me/joaovanzuita?ppid=PPC000628&cnac=BR&rsta=en_BR%28en_AR%29&cust=Z8V4LFWNLXJ5S&unptid=9a9fa222-b75f-11e8-822d-441ea1470e54&t=&cal=62f3404cebe63&calc=62f3404cebe63&calf=62f3404cebe63&unp_tpcid=ppme-social-user-profile-created&page=main:email&pgrp=main:email&e=op&mchn=em&s=ci&mail=sys)
