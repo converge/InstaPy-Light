@@ -1,4 +1,5 @@
 
+
 # Contents
 
 * [Introduction](#introduction-and-initial-setup)
@@ -10,6 +11,7 @@
   * [Blacklist](#blacklist)
   * [Unfollow by Blacklist Campaign](#unfollow-by-blacklist-campaign)
   * [Unfollow](#unfollow)
+  * [Save Screenshot](#save-screenshot)
 * [Developers documentation](#developers-documentation)
 * [Feedback](#feedback)
 * [Keep The Project Alive](#keep-the-project-alive)
@@ -31,9 +33,9 @@ The basics steps to install in any operational system is:
 
 ### Install On MacOS
 
-Video tutorial in Brazilian Portuguese: 
+Video tutorial in Brazilian Portuguese:
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=h9svDhveps8" target="_blank"><img src="http://img.youtube.com/vi/h9svDhveps8/0.jpg" 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=h9svDhveps8" target="_blank"><img src="http://img.youtube.com/vi/h9svDhveps8/0.jpg"
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 ### Setup your Instagram account
@@ -106,6 +108,17 @@ Unfollow profiles
 
 ```python
 session.unfollow_users(amount=5)
+```
+
+### Save Screenshot
+
+This is useful when you´re running it in a server and don´t have access to the
+screen of the browser. If some error was raised, you can see the last screen to
+be able to check what could be wrong.
+
+- **filename** file name to be saved in the root folder of InstaPy-Light
+```python
+session.save_screenshot(filename='image.png')
 ```
 
 ## Developers Documentation:
