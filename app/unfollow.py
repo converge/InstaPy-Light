@@ -396,11 +396,10 @@ def follow_through_dialog(account_id,
         abort = (before_scroll == total_list)
 
     for person in follow_buttons:
-
         if person and hasattr(person, 'text') and person.text:
             try:
-                person_list.append(person.find_element_by_xpath("../../../*")
-                                   .find_elements_by_tag_name("a")[1].text)
+                person_list.append(person.find_element_by_xpath(
+                    "../../div/div/div[1]/a").text)
             except IndexError:
                 pass  # Element list is too short to have a [1] element
 
